@@ -13,11 +13,11 @@ export default function InterviewerList(props) {
         {interviewers.map((item) => {
           return (
             <InterviewerListItem 
-              id={item.id}
+              key={item.id}
               avatar={item.avatar}
               name={item.name}
               selected={interviewer === item.id}
-              setInterviewer={item.setInterviewer}
+              setInterviewer={event => setInterviewer(item.id)}
             />
           );
         })}
