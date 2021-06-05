@@ -8,7 +8,7 @@ import Form from "components/Appointment/Form";
 import "components/Appointment/styles.scss";
 
 export default function Appointment(props) {
-  const {time, interview} = props;
+  const {time, interviewers, interview} = props;
   const CREATE = 'CREATE';
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
@@ -26,7 +26,7 @@ export default function Appointment(props) {
       )}
       {mode === CREATE && (
         <Form
-          interviewers={[]}
+          interviewers={interviewers}
           onSave={() => console.log('SAVE')}
           onCancel={() => back()}
         />
