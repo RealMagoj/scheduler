@@ -4,7 +4,12 @@ export function getAppointmentsForDay(state, day) {
     return stateDay.name === day;
   })[0];
   selectedDay && selectedDay.appointments.map(appointment => {
-    appointmentsArray.push(state.appointments[appointment]);
+    return appointmentsArray.push(state.appointments[appointment]);
   });
   return appointmentsArray;
-}
+};
+
+export function getInterview(state, interview) {
+  return interview ? 
+    {...interview, interviewer: state.interviewers[interview.interviewer]} : null;
+};
