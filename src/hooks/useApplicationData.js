@@ -25,7 +25,7 @@ export default function useApplicationData() {
       {interview}
     ).then(() => {
       setState((prev) => ({...prev, appointments}));
-      updateSpots();
+      updateSpots(id);
     });
   };
   
@@ -42,16 +42,23 @@ export default function useApplicationData() {
       `/api/appointments/${id}`
     ).then(() => {
       setState((prev) => ({...prev, appointments}));
-      updateSpots();
+      updateSpots(id);
     });
   };
 
-  // Complete updateSpots function
-  const updateSpots = () => {
+  const updateSpots = (id) => {
     const selectedDay = state.days.filter((day) => {
       return day.name === state.day;
     })[0];
-    console.log(selectedDay.spots);
+    const appointment = state.appointments[id];
+    if (appointment.interview === null) {
+      selectedDay.spots -= 1;
+    } else  {
+      selectedDay.spots += 1;
+    }
+    state.days[selectedDay.id - 1] = selectedDay;
+    const days = state.days;
+    setState((prev) => ({...prev, days}));
   };
   
   useEffect(() => {
