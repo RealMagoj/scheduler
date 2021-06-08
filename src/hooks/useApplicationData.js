@@ -24,8 +24,8 @@ export default function useApplicationData() {
       `/api/appointments/${id}`,
       {interview}
     ).then(() => {
-      setState((prev) => ({...prev, appointments}));
-      updateSpots(id);
+      const newState = {...state, appointments};
+      setState(updateSpots(newState));
     });
   };
   
@@ -41,24 +41,23 @@ export default function useApplicationData() {
     return axios.delete(
       `/api/appointments/${id}`
     ).then(() => {
-      setState((prev) => ({...prev, appointments}));
-      updateSpots(id);
+      const newState = {...state, appointments};
+      setState(updateSpots(newState));
     });
   };
 
-  const updateSpots = (id) => {
-    const selectedDay = state.days.filter((day) => {
-      return day.name === state.day;
-    })[0];
-    const appointment = state.appointments[id];
-    if (appointment.interview === null) {
-      selectedDay.spots -= 1;
-    } else  {
-      selectedDay.spots += 1;
-    }
-    state.days[selectedDay.id - 1] = selectedDay;
-    const days = state.days;
-    setState((prev) => ({...prev, days}));
+  const updateSpots = (state) => {
+    const givenDay = state.day;
+    const dayToUpdate = state.days.find(day => day.name === givenDay);
+    const dayToUpdateIndex = state.days.findIndex(day => day.name === givenDay);
+    const listOfAppointmentIds = dayToUpdate.appointments;
+    const spots = listOfAppointmentIds.filter(apptId => state.appointments[apptId].interview === null).length;
+    const updatedDay = {...dayToUpdate, spots};
+    const updatedDays = [...state.days];
+    
+    updatedDays[dayToUpdateIndex] = updatedDay;
+    
+    return {...state, days: updatedDays};
   };
   
   useEffect(() => {
