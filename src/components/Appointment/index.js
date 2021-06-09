@@ -50,7 +50,7 @@ export default function Appointment(props) {
   };
   
   return (
-    <article className="appointment">
+    <article data-testid="appointment" className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={SAVING} />}
