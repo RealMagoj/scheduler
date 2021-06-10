@@ -21,6 +21,6 @@ npm test
 ```sh
 npm run storybook
 ```
-![Booked Appointment]("docs/booked-appointment.png");
-![Editing Appointment]("docs/editing-appointment.png");
-![Confirm Delete Appointment]("docs/confirm-delete-appointment.png");
+![Booked Appointment](docs/booked-appointment.png);
+![Editing Appointment](docs/editing-appointment.png);
+![Confirm Delete Appointment](docs/confirm-delete-appointment.png);
