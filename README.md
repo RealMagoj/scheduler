@@ -2,7 +2,7 @@
 
 ## Setup
 
-Install dependencies with `npm install`. See `scheduler-api` repo for instructions to install development api.
+Install dependencies with `npm install`. See [scheduler-api](https://github.com/RealMagoj/scheduler-api) repo for instructions to install development api.
 
 ## Running Webpack Development Server
 
