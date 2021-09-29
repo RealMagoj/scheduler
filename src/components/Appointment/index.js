@@ -10,44 +10,45 @@ import Form from "components/Appointment/Form";
 
 import "components/Appointment/styles.scss";
 
+const {time, interviewers, interview, bookInterview, cancelInterview, id} = props;
+const CREATE = 'CREATE';
+const EDIT = 'EDIT';
+const EMPTY = 'EMPTY';
+const SHOW = 'SHOW';
+const SAVING = 'SAVING';
+const DELETING = 'DELETING';
+const CONFIRM = 'CONFIRM';
+const ERROR_SAVE = 'ERROR_SAVE';
+const ERROR_DELETE = 'ERROR_DELETE';
+const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+
+const save = (name, interviewer) => {
+  transition(SAVING);
+  const interview = {
+    student: name,
+    interviewer
+  };
+  bookInterview(id, interview)
+  .then(() => {
+    transition(SHOW);
+  })
+  .catch(() => {
+    transition(ERROR_SAVE, true);
+  });
+};
+
+const deleteInterview = () => {
+  transition(DELETING, true);
+  cancelInterview(id)
+  .then(() => {
+    transition(EMPTY);
+  })
+  .catch(() => {
+    transition(ERROR_DELETE, true);
+  });
+};
+
 export default function Appointment(props) {
-  const {time, interviewers, interview, bookInterview, cancelInterview, id} = props;
-  const CREATE = 'CREATE';
-  const EDIT = 'EDIT';
-  const EMPTY = 'EMPTY';
-  const SHOW = 'SHOW';
-  const SAVING = 'SAVING';
-  const DELETING = 'DELETING';
-  const CONFIRM = 'CONFIRM';
-  const ERROR_SAVE = 'ERROR_SAVE';
-  const ERROR_DELETE = 'ERROR_DELETE';
-  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
-
-  const save = (name, interviewer) => {
-    transition(SAVING);
-    const interview = {
-      student: name,
-      interviewer
-    };
-    bookInterview(id, interview)
-    .then(() => {
-      transition(SHOW);
-    })
-    .catch(() => {
-      transition(ERROR_SAVE, true);
-    });
-  };
-
-  const deleteInterview = () => {
-    transition(DELETING, true);
-    cancelInterview(id)
-    .then(() => {
-      transition(EMPTY);
-    })
-    .catch(() => {
-      transition(ERROR_DELETE, true);
-    });
-  };
   
   return (
     <article data-testid="appointment" className="appointment">
