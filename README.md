@@ -2,7 +2,7 @@
 
 ## Setup
 
-Install dependencies with `npm install`. See scheduler-api repo for instructions to install development api.
+Install dependencies with `npm install`. See `scheduler-api` repo for instructions to install development api.
 
 ## Running Webpack Development Server
 
@@ -27,9 +27,9 @@ npm run storybook
 
 ## Dependencies
 
-Axios 0.21.1 or above
-Classnames 2.2.6 or above
-Normalize.css 8.0.1 or above
-React 16.9.0 or above
-React-dom 16.9.0 or above
-React-scripts 3.0.0 or above
+- Axios 0.21.1 or above
+- Classnames 2.2.6 or above
+- Normalize.css 8.0.1 or above
+- React 16.9.0 or above
+- React-dom 16.9.0 or above
+- React-scripts 3.0.0 or above
