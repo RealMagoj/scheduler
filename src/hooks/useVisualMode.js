@@ -10,11 +10,12 @@ export default function useVisualMode(initialMode) {
     };
   };
   const back = () => {
-    console.log(history);
-    if (history.length > 1) {
-      history.pop();
+    const newHistory = [...history];
+    if (newHistory.length > 1) {
+      newHistory.pop();
     };
-    setMode(history[history.length - 1]);
+    setHistory(newHistory);
+    setMode(newHistory[newHistory.length - 1]);
   };
   return { mode, transition, back };
 };
