@@ -10,6 +10,7 @@ export default function useVisualMode(initialMode) {
     };
   };
   const back = () => {
+    console.log(history);
     if (history.length > 1) {
       history.pop();
     };
